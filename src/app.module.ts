@@ -5,6 +5,7 @@ import { DatabaseModule } from './shared/database/database.module';
 import { LoggerModule } from './shared/logger/logger.module';
 import { envValidationSchema } from './shared/config/env.validation';
 import { CropsModule } from './modules/crops/crops.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { FarmsModule } from './modules/farms/farms.module';
 import { HarvestsModule } from './modules/harvests/harvests.module';
 import { ProducersModule } from './modules/producers/producers.module';
@@ -22,6 +23,7 @@ import { ProducersModule } from './modules/producers/producers.module';
     FarmsModule,
     HarvestsModule,
     CropsModule,
+    DashboardModule,
   ],
 })
 export class AppModule {}
