@@ -7,5 +7,6 @@ export interface ProducerRepository {
   update(producer: Producer): Promise<Producer>;
   delete(id: string): Promise<void>;
   findById(id: string): Promise<Producer | null>;
+  findByDocument(document: string): Promise<Producer | null>;
   findAll(): Promise<Producer[]>;
 }
