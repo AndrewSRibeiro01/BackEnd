@@ -35,9 +35,7 @@ export class UpdateProducerUseCase {
       if (updated.document !== existing.document) {
         const conflict = await this.repository.findByDocument(updated.document);
         if (conflict && conflict.id !== id) {
-          throw new ConflictError(
-            `A producer with document ${updated.document} already exists`,
-          );
+          throw new ConflictError('Já existe um produtor com este CPF/CNPJ');
         }
       }
     }

@@ -24,9 +24,7 @@ export class CreateProducerUseCase {
 
     const existing = await this.repository.findByDocument(producer.document);
     if (existing) {
-      throw new ConflictError(
-        `A producer with document ${producer.document} already exists`,
-      );
+      throw new ConflictError('Já existe um produtor com este CPF/CNPJ');
     }
 
     return this.repository.create(producer);
