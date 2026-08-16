@@ -1,6 +1,8 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+
+const logger = new Logger('DatabaseModule');
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
         };
 
         if (url) {
+          const masked = url.replace(/:\/\/([^:]+):[^@]+@/, '://$1:***@');
+          logger.log(`Connecting via DATABASE_URL → ${masked}`);
           return {
             ...base,
             url,
@@ -25,9 +29,19 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
           };
         }
 
+        if (isProd) {
+          throw new Error(
+            'DATABASE_URL is required in production but was not provided',
+          );
+        }
+
+        const host = config.get<string>('DATABASE_HOST');
+        logger.log(
+          `Connecting via DATABASE_HOST=${host} DATABASE_NAME=${config.get('DATABASE_NAME')}`,
+        );
         return {
           ...base,
-          host: config.get<string>('DATABASE_HOST'),
+          host,
           port: config.get<number>('DATABASE_PORT'),
           username: config.get<string>('DATABASE_USER'),
           password: config.get<string>('DATABASE_PASSWORD'),
