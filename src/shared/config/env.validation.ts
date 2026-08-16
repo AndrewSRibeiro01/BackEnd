@@ -27,21 +27,30 @@ class EnvVars {
   PORT: number = 3000;
 
   @IsString()
-  DATABASE_HOST!: string;
+  @IsOptional()
+  DATABASE_URL?: string;
+
+  @IsString()
+  @IsOptional()
+  DATABASE_HOST?: string;
 
   @IsInt()
   @Min(1)
   @Max(65535)
-  DATABASE_PORT!: number;
+  @IsOptional()
+  DATABASE_PORT?: number;
 
   @IsString()
-  DATABASE_USER!: string;
+  @IsOptional()
+  DATABASE_USER?: string;
 
   @IsString()
-  DATABASE_PASSWORD!: string;
+  @IsOptional()
+  DATABASE_PASSWORD?: string;
 
   @IsString()
-  DATABASE_NAME!: string;
+  @IsOptional()
+  DATABASE_NAME?: string;
 }
 
 export function envValidationSchema(config: Record<string, unknown>) {

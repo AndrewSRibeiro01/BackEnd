@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: agro-back
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/producers/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: agro-postgres
+          property: connectionString
+
+databases:
+  - name: agro-postgres
+    plan: free
+    region: oregon
+    databaseName: agro
+    user: agro
