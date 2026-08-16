@@ -13,7 +13,11 @@ export class Producer {
     public readonly name: string,
   ) {}
 
-  static create(input: { document: string; name: string; id?: string }): Producer {
+  static create(input: {
+    document: string;
+    name: string;
+    id?: string;
+  }): Producer {
     const document = stripDocument(input.document);
     if (!isValidDocument(document)) {
       throw new BusinessRuleViolation('Invalid CPF or CNPJ');
@@ -25,7 +29,11 @@ export class Producer {
     return new Producer(input.id ?? randomUUID(), document, name);
   }
 
-  static restore(props: { id: string; document: string; name: string }): Producer {
+  static restore(props: {
+    id: string;
+    document: string;
+    name: string;
+  }): Producer {
     return new Producer(props.id, props.document, props.name);
   }
 

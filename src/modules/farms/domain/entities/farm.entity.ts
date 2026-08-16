@@ -1,10 +1,7 @@
 import { randomUUID } from 'crypto';
 
 import { BusinessRuleViolation } from '../../../../shared/exceptions/domain.exception';
-import {
-  BrazilianState,
-  isBrazilianState,
-} from './brazilian-state';
+import { BrazilianState, isBrazilianState } from './brazilian-state';
 import { FarmAreas } from './farm-areas.value-object';
 
 export interface FarmProps {
@@ -50,7 +47,14 @@ export class Farm {
       vegetationHa: props.vegetationHa,
     });
 
-    return new Farm(props.id ?? randomUUID(), props.producerId, name, city, state, areas);
+    return new Farm(
+      props.id ?? randomUUID(),
+      props.producerId,
+      name,
+      city,
+      state,
+      areas,
+    );
   }
 
   static restore(props: {

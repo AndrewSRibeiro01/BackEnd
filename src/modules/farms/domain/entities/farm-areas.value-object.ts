@@ -20,7 +20,9 @@ export class FarmAreas {
       ['vegetationHa', vegetationHa],
     ] as const) {
       if (!Number.isFinite(value) || value < 0) {
-        throw new BusinessRuleViolation(`${label} must be a non-negative number`);
+        throw new BusinessRuleViolation(
+          `${label} must be a non-negative number`,
+        );
       }
     }
 

@@ -9,11 +9,7 @@ export class Crop {
     public readonly name: string,
   ) {}
 
-  static create(input: {
-    id?: string;
-    harvestId: string;
-    name: string;
-  }): Crop {
+  static create(input: { id?: string; harvestId: string; name: string }): Crop {
     if (!input.harvestId?.trim()) {
       throw new BusinessRuleViolation('harvestId is required');
     }
@@ -22,11 +18,7 @@ export class Crop {
     return new Crop(input.id ?? randomUUID(), input.harvestId, name);
   }
 
-  static restore(props: {
-    id: string;
-    harvestId: string;
-    name: string;
-  }): Crop {
+  static restore(props: { id: string; harvestId: string; name: string }): Crop {
     return new Crop(props.id, props.harvestId, props.name);
   }
 }

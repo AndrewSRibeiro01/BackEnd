@@ -8,7 +8,8 @@ import { stripDocument } from '../../../../shared/validation/document.validator'
 export class CreateProducerDto {
   @ApiProperty({
     example: '12345678909',
-    description: 'CPF (11 dígitos) ou CNPJ (14 dígitos). Aceita com ou sem máscara.',
+    description:
+      'CPF (11 dígitos) ou CNPJ (14 dígitos). Aceita com ou sem máscara.',
   })
   @Transform(({ value }) =>
     typeof value === 'string' ? stripDocument(value) : value,
