@@ -16,7 +16,7 @@ const logger = new Logger('DatabaseModule');
         const base = {
           type: 'postgres' as const,
           autoLoadEntities: true,
-          synchronize: !isProd,
+          synchronize: true,
         };
 
         if (url) {
